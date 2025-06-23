@@ -29,14 +29,14 @@ const Footer = () => {
           <h4 className="text-lg font-semibold mb-3">Contact</h4>
           <ul className="space-y-2 text-sm">
             <li>📍 Conakry, République de Guinée</li>
-            <li>📧 contact@billetteriegn.com</li>
-            <li>📞 +224 620 00 00 00</li>
+            <li>📧 contact@billetteriegn.com(fictif)</li>
+            <li>📞 +224 00 00 00 00</li>
           </ul>
         </div>
       </div>
 
       <div className="border-t border-white/30 py-4 text-center text-sm">
-        © {new Date().getFullYear()} Billetterie Guinéenne. Tous droits réservés.
+        © {new Date().getFullYear()} Billetterie Guinéenne. Tous droits réservés. (fictif)
       </div>
     </footer>
   );
