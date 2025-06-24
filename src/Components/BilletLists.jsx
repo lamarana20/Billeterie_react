@@ -17,7 +17,7 @@ const BilletLists = ({ limit }) => {
     <section className="py-6 px-3 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-4">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
             <span className="text-blue-600">Événements</span> Populaires
           </h2>
@@ -27,7 +27,7 @@ const BilletLists = ({ limit }) => {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 gap-5 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3  ">
+        <div className="grid grid-cols-1 gap-4 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {visibleProducts.map((product, index) => (
             <div
               key={product.id}
@@ -86,6 +86,7 @@ const BilletLists = ({ limit }) => {
         </div>
       </div>
     </section>
+      
   );
 };
 

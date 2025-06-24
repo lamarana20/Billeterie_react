@@ -69,7 +69,7 @@ const Home = () => {
 </div>
 
       {/* ✅ Section des billets */}
-      <div className="bg-gray-50 pb-10 px-4">
+      <div className="bg-gray-50 py-4 px-4 ">
         <BilletLists limit={6} />
       </div>
     </div>
