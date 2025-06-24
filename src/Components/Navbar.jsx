@@ -10,7 +10,7 @@ const Navbar = () => {
   const location = useLocation();
 
   const toggleMenu = () => setIsOpen(!isOpen);
-  const activeClass = "text-yellow-300 font-semibold";
+  const activeClass = "text-blue-600 font-semibold";
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   // Ferme le menu mobile + panier à chaque navigation
@@ -21,58 +21,44 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-gradient-to-r from-red-600 via-yellow-400 to-green-600 text-white shadow-md sticky top-0 z-50">
+      <nav className="bg-white text-gray-800 shadow-md sticky top-0 z-50 border-b">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link to="/" className="text-2xl font-extrabold flex items-center">
-            <img 
-              src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Flag_of_Guinea.svg"
-              alt="Guinée" 
-              className="w-8 h-8 mr-2 rounded-full border-2 border-white"
-            />
-            Billetterie Guinéenne
+          <Link to="/" className="text-2xl font-bold flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+            </svg>
+             <h3 className="text-xl font-bold">Billets En Ligne</h3>
           </Link>
-
           {/* Desktop */}
-          <div className="hidden md:flex space-x-6 items-center">
-            <NavLink to="/" className={({ isActive }) => `text-lg ${isActive ? activeClass : ''}`}>Accueil</NavLink>
-            <NavLink to="/events" className={({ isActive }) => `text-lg ${isActive ? activeClass : ''}`}>Événements</NavLink>
-            <NavLink to="/about" className={({ isActive }) => `text-lg ${isActive ? activeClass : ''}`}>À propos</NavLink>
+          <div className="hidden md:flex space-x-8 items-center">
+            <NavLink to="/" className={({ isActive }) => `text-lg hover:text-blue-600 ${isActive ? activeClass : ''}`}>Accueil</NavLink>
+            <NavLink to="/events" className={({ isActive }) => `text-lg hover:text-blue-600 ${isActive ? activeClass : ''}`}>Événements</NavLink>
+            <NavLink to="/about" className={({ isActive }) => `text-lg hover:text-blue-600 ${isActive ? activeClass : ''}`}>À propos</NavLink>
 
             {/* Panier */}
             <div className="relative">
-             <NavLink
-  to="/cart"
-  onClick={() => setIsOpen(false)}
-  className="block bg-white text-red-700 font-bold px-4 py-2 rounded shadow hover:bg-yellow-300 hover:text-white transition duration-300"
->
-  🛒 Panier
-  {totalItems > 0 && (
-    <span className="ml-2 bg-red-600 text-white rounded-full px-2 py-0.5 text-xs font-bold">
-      {totalItems}
-    </span>
-  )}
-</NavLink>
+             <NavLink to="/cart" className="text-lg hover:text-blue-600">
+             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              
+              {totalItems > 0 && (
+                <span className="absolute top-0 right-0 bg-red-500 text-white text-xs font-semibold rounded-full px-2 py-1">
+                  {totalItems}
+                </span>
+              )}
+                </NavLink>
               {/* Dropdown panier */}
               {showCart && (
-                <div className="absolute right-0 mt-2 w-[400px] max-h-[500px] bg-white text-black rounded shadow-xl z-50 overflow-auto">
+                <div className="absolute right-0 mt-3 w-[700px] max-h-[500px] bg-white text-black rounded shadow-xl z-50 overflow-auto ">
                   <Cart />
                 </div>
               )}
             </div>
-
-            {/* Drapeau */}
-            <div className="flex items-center ml-4">
-              <span className="text-sm mr-2">GN</span>
-              <div className="w-8 h-5 flex rounded overflow-hidden border border-white">
-                <div className="w-1/3 bg-red-600"></div>
-                <div className="w-1/3 bg-yellow-400"></div>
-                <div className="w-1/3 bg-green-600"></div>
-              </div>
-            </div>
           </div>
 
           {/* Mobile menu icon */}
-          <button onClick={toggleMenu} className="md:hidden text-white">
+          <button onClick={toggleMenu} className="md:hidden text-gray-800">
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -85,17 +71,14 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden px-6 py-4 space-y-4 bg-gradient-to-b from-red-600 via-yellow-400 to-green-600 text-white rounded-b-md">
-            <NavLink to="/" onClick={() => setIsOpen(false)} className="block">Accueil</NavLink>
-            <NavLink to="/events" onClick={() => setIsOpen(false)} className="block">Événements</NavLink>
-            <NavLink to="/about" onClick={() => setIsOpen(false)} className="block">À propos</NavLink>
-          <NavLink to="/cart" onClick={() => setIsOpen(false)} className="block">Panier{totalItems > 0 && ` (${totalItems})`}</NavLink>
+          <div className="md:hidden px-6 py-4 space-y-4 bg-white text-gray-800 border-t">
+            <NavLink to="/" onClick={() => setIsOpen(false)} className="block hover:text-blue-600">Accueil</NavLink>
+            <NavLink to="/events" onClick={() => setIsOpen(false)} className="block hover:text-blue-600">Événements</NavLink>
+            <NavLink to="/about" onClick={() => setIsOpen(false)} className="block hover:text-blue-600">À propos</NavLink>
+            <NavLink to="/cart" onClick={() => setIsOpen(false)} className="block hover:text-blue-600">Panier{totalItems > 0 && ` (${totalItems})`}</NavLink>
           </div>
         )}
       </nav>
-
-
- 
     </>
   );
 };

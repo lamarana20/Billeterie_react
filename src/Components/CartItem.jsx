@@ -6,10 +6,9 @@ const CartItem = ({ item }) => {
     useContext(CartContext);
 
   return (
-    <div className="py-6 flex flex-col sm:flex-row transition hover:bg-gray-50 px-2 rounded-lg shadow-sm">
+    <div className="py-6 flex flex-col sm:flex-row transition hover:bg-gray-50 px-2 rounded">
       <div className="flex-1">
         <div className="flex items-start justify-between">
-            
           <div>
             <h3 className="text-lg font-medium text-gray-900">{item.name}</h3>
             <p className="mt-1 text-sm text-gray-500">

@@ -15,15 +15,15 @@ import Footer from './Components/Footer';
 const App = () => {
   return (
     <ShopCartContext>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col my-0 mx-auto">
         <Navbar />
 
-        <main className="flex-grow max-w-6xl mx-auto p-6 font-sans">
+        <main className="flex mx-auto  p-6 font-sans">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/events" element={<Events />} />
             <Route path="/about" element={<About />} />
-            <Route path="/cart" element={<CartPage />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         </main>
         <Footer />

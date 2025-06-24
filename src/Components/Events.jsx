@@ -1,20 +1,14 @@
-import React, { useState } from 'react';
+import React, { } from 'react';
 import Cart from '../Components/cart';
 import BilletLists from '../Components/BilletLists'; 
 
 const Events = () => {
-  const [showCart, setShowCart] = useState(false);
-  const [showBillet, setShowBillet] = useState(true);
+  //const [showCart, setShowCart] = useState(false);
+  //const [showBillet, setShowBillet] = useState(true);
 
   return (
     <>
-      <div className="flex gap-4 mb-4">
-        <button
-          onClick={() => setShowCart(!showCart)}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          {showCart ? 'Fermer le panier' : 'Voir le panier'}
-        </button>
+      {/*<div className="flex gap-4 mb-4">
         <button
           onClick={() => setShowBillet(!showBillet)}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -23,8 +17,8 @@ const Events = () => {
         </button>
       </div>
 
-      {showCart && <Cart />}
-      {showBillet && <BilletLists />}
+      {showBillet && <BilletLists />}*/}
+      <BilletLists />
     </>
   );
 };
