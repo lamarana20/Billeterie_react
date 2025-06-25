@@ -20,30 +20,32 @@ const AdminDashboard = () => {
     loadStats();
   }, []);
 
-  if (loading) return <div>Chargement des statistiques...</div>;
+  if (loading) return <div className="text-center p-6">Chargement des statistiques...</div>;
 
   return (
-    <div>
+    <div className="max-w-7xl mx-auto p-4">
       <h1 className="text-2xl font-bold mb-6">Tableau de bord</h1>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="bg-white p-4 rounded shadow">
+      {/* Statistiques principales */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+        <div className="bg-white p-6 rounded-lg shadow-md text-center">
           <h3 className="font-medium text-gray-500">Commandes totales</h3>
           <p className="text-3xl font-bold">{stats.totalOrders}</p>
         </div>
-        <div className="bg-white p-4 rounded shadow">
+        <div className="bg-white p-6 rounded-lg shadow-md text-center">
           <h3 className="font-medium text-gray-500">Chiffre d'affaires</h3>
           <p className="text-3xl font-bold">{stats.totalRevenue.toLocaleString()} GNF</p>
         </div>
-        <div className="bg-white p-4 rounded shadow">
+        <div className="bg-white p-6 rounded-lg shadow-md text-center">
           <h3 className="font-medium text-gray-500">Taux de conversion</h3>
           <p className="text-3xl font-bold">{stats.conversionRate}%</p>
         </div>
       </div>
 
-      <div className="bg-white p-4 rounded shadow">
+      {/* Section activité */}
+      <div className="bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-xl font-bold mb-4">Activité récente</h2>
-        {/* Ici vous pourriez ajouter un graphique ou une liste des dernières commandes */}
+        <p className="text-gray-600">Ici vous pourriez ajouter un graphique ou une liste des dernières commandes.</p>
       </div>
     </div>
   );
