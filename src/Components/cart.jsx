@@ -2,16 +2,21 @@ import React, { useContext, useMemo } from "react";
 import { CartContext } from "../Context/Shop-card-context";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 const calculateTotal = (cart) => {
   return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 };
 
 const Cart = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, } = useContext(CartContext);
+  const navigate = useNavigate();
 
   const total = useMemo(() => calculateTotal(cart), [cart]);
   const itemCount = cart.length;
+
+
 
   return (
     <div className="max-w-xl mx-auto">
@@ -64,7 +69,7 @@ const Cart = () => {
               </div>
               <p className="text-sm text-gray-500 mb-6">Taxes et frais appliqués au moment du paiement.</p>
 
-              <button className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-4 rounded-lg transition-colors duration-200 text-lg shadow-md hover:shadow-lg">
+              <button   onClick={() => navigate("/checkout")} className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-4 rounded-lg transition-colors duration-200 text-lg shadow-md hover:shadow-lg">
                 Procéder au paiement
               </button>
 

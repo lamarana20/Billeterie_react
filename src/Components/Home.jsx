@@ -7,6 +7,7 @@ import {
   FaBus,
   FaTicketAlt
 } from "react-icons/fa";
+import { Link, Navigate } from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -69,9 +70,19 @@ const Home = () => {
 </div>
 
       {/* ✅ Section des billets */}
-      <div className="bg-gray-50 py-4 px-4 ">
-        <BilletLists limit={6} />
-      </div>
+    <div className="bg-gray-50 py-4 px-4">
+  <BilletLists limit={4} />
+
+  <div className="flex justify-center mt-4">
+    <Link
+      to="/events"
+      className="inline-block bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+    >
+      Voir tous les billets
+    </Link>
+  </div>
+</div>
+
     </div>
   );
 };

@@ -1,0 +1,60 @@
+
+[
+  {
+    "id": 1,
+    "name": "Concert de Jazz",
+    "price": 25000,
+    "description": "Soirée exceptionnelle avec les meilleurs artistes de jazz du pays",
+    "location": "Palais du Peuple, Conakry",
+    "date": "2023-12-15T20:00:00"
+  },
+  {
+    "id": 2,
+    "name": "Festival Culturel",
+    "price": 15000,
+    "description": "Découverte des traditions et danses locales",
+    "location": "Place des Martyrs",
+    "date": "2023-12-20T18:00:00"
+  },
+  {
+    "id": 3,
+    "name": "Match de Football",
+    "price": 30000,
+    "description": "Finale du championnat national",
+    "location": "Stade du 28 Septembre",
+    "date": "2023-12-10T16:00:00"
+  },
+    {
+        "id": 4,
+        "name": "Exposition d'Art",
+        "price": 10000,
+        "description": "Exposition des artistes locaux et internationaux",
+        "location": "Musée National de Guinée",
+        "date": "2023-12-05T10:00:00"
+    },
+    {
+        "id": 5,
+        "name": "Conférence sur le Développement Durable",
+        "price": 5000,
+        "description": "Discussion sur les initiatives écologiques en Guinée",
+        "location": "Centre Culturel Franco-Guinéen",
+        "date": "2023-12-18T14:00:00"
+    },
+
+    {
+    "id": 6,
+    "name": "Spectacle de Danse",
+    "price": 20000,
+    "description": "Performance de danse contemporaine par la troupe nationale",
+    "location": "Théâtre National",
+    "date": "2023-12-22T19:00:00"
+    },
+    {
+        "id": 7,
+        "name": "Concert de Musique Traditionnelle",
+        "price": 12000,
+        "description": "Concert mettant en avant les instruments traditionnels guinéens",
+        "location": "Grande Mosquée de Conakry",
+        "date": "2023-12-25T17:00:00"
+    }
+]

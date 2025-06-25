@@ -1,9 +1,36 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../Context/Shop-card-context";
+import { Spinner } from "@material-tailwind/react";
 
 const BilletLists = ({ limit }) => {
-  const { addToCart, products } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Chargement des données depuis le JSON local
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        // Simulation de chargement asynchrone
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // Import dynamique du fichier JSON
+        const response = await import("../data/billets.json");
+        setProducts(response.default);
+      } catch (error) {
+        console.error("Erreur de chargement des billets:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   const visibleProducts = limit ? products.slice(0, limit) : products;
+  
+  
+  
   const eventImages = [
     "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=500&q=60",
     "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=500&q=60",
@@ -11,7 +38,34 @@ const BilletLists = ({ limit }) => {
     "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=500&q=60",
     "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=500&q=60",
     "https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?auto=format&fit=crop&w=500&q=60",
+        
+    
   ];
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+  };
+
+  if (loading) {
+    return (
+      <section className="py-6 px-3 sm:px-6 lg:px-8 bg-gray-50">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="flex justify-center items-center">
+            <Spinner className="h-12 w-12" />
+          </div>
+        </div>
+      </section>    );
+  }
+
+  if (products.length === 0) {
+    return (
+      <section className="py-6 px-3 sm:px-6 lg:px-8 bg-gray-50">
+        <div className="max-w-7xl mx-auto text-center">
+          <p>Aucun événement disponible pour le moment</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-6 px-3 sm:px-6 lg:px-8 bg-gray-50">
@@ -33,6 +87,7 @@ const BilletLists = ({ limit }) => {
               key={product.id}
               className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 overflow-hidden flex flex-col border border-gray-200"
             >
+              {/* ... (le reste de votre JSX existant) ... */}
               <div className="relative h-40 sm:h-48">
                 <img
                   src={eventImages[index % eventImages.length]}
@@ -49,12 +104,18 @@ const BilletLists = ({ limit }) => {
 
               <div className="p-3 sm:p-5 flex-1 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-base sm:text-lg font-bold text-gray-800">{product.name}</h3>
-                    <span className="text-blue-600 font-semibold text-sm sm:text-base">
-                      {product.price.toLocaleString()} GNF
-                    </span>
-                  </div>
+                 <div className="flex items-center justify-between gap-2">
+  <h3
+    className="text-base sm:text-lg font-bold text-gray-800 truncate whitespace-nowrap max-w-[70%] cursor-pointer"
+    title={product.name} // Affiche le nom complet au hover
+  >
+    {product.name}
+  </h3>
+  <span className="text-blue-600 font-semibold text-sm sm:text-base whitespace-nowrap">
+    {product.price.toLocaleString()} GNF
+  </span>
+</div>
+
                   <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-gray-600 line-clamp-2">{product.description}</p>
 
                   <div className="mt-2 sm:mt-3 flex justify-between text-xs sm:text-sm text-gray-500">
@@ -69,13 +130,13 @@ const BilletLists = ({ limit }) => {
                       <svg className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
-                      {new Date(product.date).toLocaleDateString('fr-FR') || "Bientôt disponible"}
+                      {product.date ? new Date(product.date).toLocaleDateString('fr-FR') : "Bientôt disponible"}
                     </div>
                   </div>
                 </div>
 
                 <button
-                  onClick={() => addToCart(product)}
+                  onClick={() => handleAddToCart(product)}
                   className="mt-3 sm:mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-1.5 sm:py-2 px-3 sm:px-4 rounded-md transition duration-300 text-sm sm:text-base"
                 >
                   Ajouter au Panier
@@ -86,7 +147,6 @@ const BilletLists = ({ limit }) => {
         </div>
       </div>
     </section>
-      
   );
 };
 
