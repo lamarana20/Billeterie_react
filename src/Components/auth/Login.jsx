@@ -5,8 +5,8 @@ import { toast } from 'react-toastify';
 import { Spinner } from "@material-tailwind/react";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('admin@example.com')
+  const [password, setPassword] = useState('admin123');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loading, setLoading] = useState(true);
   const { login } = useContext(AuthContext);
@@ -40,7 +40,7 @@ const Login = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  if (loading) return <div className="flex items-center justify-center"><Spinner className='h-12 w-12 mt-2.5' /></div>;
+  if (loading) return <div className="flex items-center justify-center"><Spinner className='h-12 w-12' /></div>;
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
