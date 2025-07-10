@@ -22,6 +22,7 @@ import AdminDashboard from "./Components/admin/AdminDashboard";
 import AdminOrders from "./Components/admin/AdminOrders";
 import NotFound from "./Components/NotFound";
 import MyOrders from "./Components/MyOrders";
+import BilletDetail from "./Components/BilletDetail";
 //import UsersList from "./Components/UsersList";
 
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
             
 
               <Route path="/billets" element={<BilletLists />} />
+              <Route path="/billet/:id" element={<BilletDetail />} />
 
               {/* Routes protégées */}
               <Route path="/checkout" element={

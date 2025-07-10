@@ -1,4 +1,3 @@
-
 [
   {
     "id": 1,
@@ -6,55 +5,208 @@
     "price": 25000,
     "description": "Soirée exceptionnelle avec les meilleurs artistes de jazz du pays",
     "location": "Palais du Peuple, Conakry",
-    "date": "2023-12-15T20:00:00"
+    "date": "2023-12-15T20:00:00",
+    "category": "Musique",
+    "image": "/images/photo-1493225457124-a3eb161ffa5f.avif"
   },
   {
     "id": 2,
+    "name": "Concert Rock",
+    "price": 22000,
+    "description": "Une soirée rock inoubliable",
+    "location": "Palais du Peuple, Conakry",
+    "date": "2023-12-16T20:00:00",
+    "category": "Musique",
+    "image":  "/images/fetival.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Concert de Musique Traditionnelle",
+    "price": 12000,
+    "description": "Concert mettant en avant les instruments traditionnels guinéens",
+    "location": "Grande Mosquée de Conakry",
+    "date": "2023-12-25T17:00:00",
+    "category": "Musique",
+    "image": "/images/fetival.jpg"
+  },
+  {
+    "id": 4,
     "name": "Festival Culturel",
     "price": 15000,
     "description": "Découverte des traditions et danses locales",
     "location": "Place des Martyrs",
-    "date": "2023-12-20T18:00:00"
+    "date": "2023-12-20T18:00:00",
+    "category": "Culture",
+    "image": "/images/photo-1493225457124-a3eb161ffa5f.avif"
   },
   {
-    "id": 3,
+    "id": 5,
+    "name": "Exposition Culturelle",
+    "price": 15000,
+    "description": "Exposition sur l'histoire de la Guinée",
+    "location": "Musée National",
+    "date": "2023-12-21T18:00:00",
+    "category": "Culture",
+    "image": "/images/photo-1493225457124-a3eb161ffa5f.avif"
+  },
+  {
+    "id": 6,
+    "name": "Fête Traditionnelle",
+    "price": 15000,
+    "description": "Célébration des traditions guinéennes",
+    "location": "Village artisanal",
+    "date": "2023-12-22T18:00:00",
+    "category": "Culture",
+    "image": "/images/photo-1493225457124-a3eb161ffa5f.avif"
+  },
+  {
+    "id": 7,
     "name": "Match de Football",
     "price": 30000,
     "description": "Finale du championnat national",
     "location": "Stade du 28 Septembre",
-    "date": "2023-12-10T16:00:00"
+    "date": "2023-12-10T16:00:00",
+    "category": "Sport",
+    "image": "/images/images.jpeg"
   },
-    {
-        "id": 4,
-        "name": "Exposition d'Art",
-        "price": 10000,
-        "description": "Exposition des artistes locaux et internationaux",
-        "location": "Musée National de Guinée",
-        "date": "2023-12-05T10:00:00"
-    },
-    {
-        "id": 5,
-        "name": "Conférence sur le Développement Durable",
-        "price": 5000,
-        "description": "Discussion sur les initiatives écologiques en Guinée",
-        "location": "Centre Culturel Franco-Guinéen",
-        "date": "2023-12-18T14:00:00"
-    },
-
-    {
-    "id": 6,
+  {
+    "id": 8,
+    "name": "Match de Basketball",
+    "price": 25000,
+    "description": "Tournoi national de basketball",
+    "location": "Palais des Sports",
+    "date": "2023-12-11T16:00:00",
+    "category": "Sport",
+    "image": "/public/images/lebron.jpeg"
+  },
+  {
+    "id": 9,
+    "name": "Tournoi de Tennis",
+    "price": 28000,
+    "description": "Compétition internationale de tennis",
+    "location": "Club de Tennis de Conakry",
+    "date": "2023-12-12T16:00:00",
+    "category": "Sport",
+    "image": "/images/nadal.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Exposition d'Art",
+    "price": 10000,
+    "description": "Exposition des artistes locaux et internationaux",
+    "location": "Musée National de Guinée",
+    "date": "2023-12-05T10:00:00",
+    "category": "Art",
+    "image": "/images/photo-1493225457124-a3eb161ffa5f.avif"
+  },
+  {
+    "id": 11,
+    "name": "Galerie de Peinture",
+    "price": 12000,
+    "description": "Exposition de peintures contemporaines",
+    "location": "Galerie d'Art Moderne",
+    "date": "2023-12-06T10:00:00",
+    "category": "Art",
+    "image": "/images/photo-1493225457124-a3eb161ffa5f.avif"
+  },
+  {
+    "id": 12,
+    "name": "Sculpture Moderne",
+    "price": 11000,
+    "description": "Exhibition de sculptures contemporaines",
+    "location": "Centre d'Art Contemporain",
+    "date": "2023-12-07T10:00:00",
+    "category": "Art",
+    "image": "/images/photo-1493225457124-a3eb161ffa5f.avif"
+  },
+  {
+    "id": 13,
+    "name": "Conférence sur le Développement Durable",
+    "price": 5000,
+    "description": "Discussion sur les initiatives écologiques en Guinée",
+    "location": "Centre Culturel Franco-Guinéen",
+    "date": "2023-12-18T14:00:00",
+    "category": "Conférence",
+    "image": "/images/photo-1493225457124-a3eb161ffa5f.avif"
+  },
+  {
+    "id": 14,
+    "name": "Conférence Économique",
+    "price": 5000,
+    "description": "Perspectives économiques pour la Guinée",
+    "location": "Chambre de Commerce",
+    "date": "2023-12-19T14:00:00",
+    "category": "Conférence",
+    "image": "/images/photo-1493225457124-a3eb161ffa5f.avif"
+  },
+  {
+    "id": 15,
+    "name": "Conférence Technologique",
+    "price": 5000,
+    "description": "Innovation et technologie en Afrique",
+    "location": "Tech Hub Conakry",
+    "date": "2023-12-20T14:00:00",
+    "category": "Conférence",
+    "image": "/images/photo-1493225457124-a3eb161ffa5f.avif"
+  },
+  {
+    "id": 16,
     "name": "Spectacle de Danse",
     "price": 20000,
     "description": "Performance de danse contemporaine par la troupe nationale",
     "location": "Théâtre National",
-    "date": "2023-12-22T19:00:00"
-    },
-    {
-        "id": 7,
-        "name": "Concert de Musique Traditionnelle",
-        "price": 12000,
-        "description": "Concert mettant en avant les instruments traditionnels guinéens",
-        "location": "Grande Mosquée de Conakry",
-        "date": "2023-12-25T17:00:00"
-    }
+    "date": "2023-12-22T19:00:00",
+    "category": "Danse",
+    "image": "/images/photo-1493225457124-a3eb161ffa5f.avif"
+  },
+  {
+    "id": 17,
+    "name": "Ballet National",
+    "price": 22000,
+    "description": "Spectacle du Ballet National de Guinée",
+    "location": "Palais du Peuple",
+    "date": "2023-12-23T19:00:00",
+    "category": "Danse",
+    "image": "/images/photo-1493225457124-a3eb161ffa5f.avif"
+  },
+  {
+    "id": 18,
+    "name": "Danse Moderne",
+    "price": 18000,
+    "description": "Spectacle de danse contemporaine",
+    "location": "Centre Culturel",
+    "date": "2023-12-24T19:00:00",
+    "category": "Danse",
+    "image": "/images/photo-1493225457124-a3eb161ffa5f.avif"
+  },
+  {
+    "id": 19,
+    "name": "Festival de Cuisine",
+    "price": 18000,
+    "description": "Dégustation de plats locaux et internationaux",
+    "location": "Place de la République",
+    "date": "2023-12-30T18:00:00",
+    "category": "Gastronomie",
+    "image": "/images/photo-1493225457124-a3eb161ffa5f.avif"
+  },
+  {
+    "id": 20,
+    "name": "Atelier Culinaire",
+    "price": 20000,
+    "description": "Cours de cuisine traditionnelle guinéenne",
+    "location": "École de Cuisine",
+    "date": "2023-12-31T18:00:00",
+    "category": "Gastronomie",
+    "image": "/images/photo-1493225457124-a3eb161ffa5f.avif"
+  },
+  {
+    "id": 21,
+    "name": "Dégustation de Vins",
+    "price": 25000,
+    "description": "Découverte des vins du monde",
+    "location": "Cave à Vins",
+    "date": "2024-01-01T18:00:00",
+    "category": "Gastronomie",
+    "image": "/images/photo-1493225457124-a3eb161ffa5f.avif"
+  }
 ]
