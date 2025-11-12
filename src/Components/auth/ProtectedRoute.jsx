@@ -10,7 +10,7 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
   if (loading) return <Spinner className="mx-auto mt-20" /> ;
   if (!user) return <Navigate to="/login" replace />;
   if (adminOnly && !hasPermission('admin')) {
-    toast.error('Accès réservé aux administrateurs');
+    toast.error('Access restricted to administrators');
     return <Navigate to="/" replace />;
   }
 

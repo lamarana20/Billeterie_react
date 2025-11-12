@@ -1,83 +1,91 @@
-import React, { createContext, useState, useEffect,useContext } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 import { toast } from 'react-toastify';
 import { AuthContext } from "../Components/AuthContext";
+import { useSearch } from "../Context/SearchContext";
 
-
-// Crée le contexte
+// Create Cart Context
 export const CartContext = createContext(null);
 
-// Provider pour encapsuler l'app
+/**
+ * Shop Cart Provider Component
+ * Manages shopping cart state, orders, and cart operations
+ */
 export const ShopCartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-  const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
-const { user } = useContext(AuthContext);
-  // Charger les produits depuis le JSON local
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        // Import dynamique du fichier JSON
-        const productsData = await import("../data/billets.json");
-        setProducts(productsData.default);
-      } catch (err) {
-        console.error('Erreur de chargement des produits:', err);
-        toast.error('Erreur lors du chargement des produits');
-      }
-    };
+  const { user } = useContext(AuthContext);
+  const { allEvents, eventsLoaded } = useSearch();
 
-    // Charger les commandes existantes depuis localStorage
+  // Products come from SearchContext
+  const products = allEvents;
+
+  // Load orders from localStorage on component mount
+  useEffect(() => {
     const loadOrders = () => {
       try {
-        const savedOrders = localStorage.getItem('orders');
+        const savedOrders = localStorage.getItem('ticketHubOrders');
         if (savedOrders) {
           setOrders(JSON.parse(savedOrders));
         }
       } catch (e) {
-        console.error("Erreur de lecture des commandes", e);
+        console.error("Error reading orders from localStorage", e);
+        toast.error('Error loading order history');
       }
     };
 
-    fetchProducts();
     loadOrders();
   }, []);
 
-  // Sauvegarder les commandes dans localStorage quand elles changent
+  // Save orders to localStorage when they change
   useEffect(() => {
-    localStorage.setItem('orders', JSON.stringify(orders));
+    localStorage.setItem('ticketHubOrders', JSON.stringify(orders));
   }, [orders]);
 
-  // Ajouter au panier
+  /**
+   * Add product to shopping cart
+   * @param {Object} product - Product to add to cart
+   */
   const addToCart = (product) => {
-    const existing = cart.find(item => item.id === product.id);
-    if (existing) {
+    const existingItem = cart.find(item => item.id === product.id);
+    
+    if (existingItem) {
       setCart(cart.map(item =>
         item.id === product.id
           ? { ...item, quantity: item.quantity + 1 }
           : item
       ));
-      toast.success('Quantité augmentée dans le panier');
+      toast.success(`Increased quantity of ${product.name} in cart`);
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
-      toast.success(`${product.name} ajouté au panier`);
+      toast.success(`${product.name} added to cart successfully`);
     }
   };
 
-  // Vider le panier
+  /**
+   * Remove all items from cart
+   */
   const clearCart = () => {
     setCart([]);
+    toast.info('Cart cleared successfully');
   };
 
-  // Augmenter la quantité
+  /**
+   * Increase quantity of item in cart
+   * @param {number} id - Product ID
+   */
   const increaseQuantity = (id) => {
     setCart((prevCart) =>
       prevCart.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
-    toast.info('Quantité augmentée');
+    toast.info('Item quantity increased');
   };
 
-  // Diminuer la quantité (mais pas en dessous de 1)
+  /**
+   * Decrease quantity of item in cart (minimum 1)
+   * @param {number} id - Product ID
+   */
   const decreaseQuantity = (id) => {
     setCart((prevCart) =>
       prevCart.map((item) =>
@@ -86,45 +94,81 @@ const { user } = useContext(AuthContext);
           : item
       )
     );
-    toast.info('Quantité diminuée');
+    toast.info('Item quantity decreased');
   };
 
-  // Supprimer du panier
+  /**
+   * Remove specific item from cart
+   * @param {number} id - Product ID to remove
+   */
   const removeFromCart = (id) => {
+    const itemToRemove = cart.find(item => item.id === id);
     setCart(cart.filter(item => item.id !== id));
-    toast.error('Produit retiré du panier');
+    toast.error(`${itemToRemove?.name || 'Item'} removed from cart`);
   };
 
-  
-const createOrder = async (orderData) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const newOrder = {
-        ...orderData,
-        userId: user?.id, // 👈 associer la commande à l'utilisateur
-        id: orders.length > 0 ? Math.max(...orders.map(o => o.id)) + 1 : 1,
-        createdAt: new Date().toISOString(),
-        status: "confirmed"
-      };
-      
-      const updatedOrders = [newOrder, ...orders];
-      setOrders(updatedOrders);
-      resolve(newOrder);
-    }, 800);
-  });
-};
-const getUserOrders = (userId) => {
-  return orders.filter(order => order.userId === userId);
-};
+  /**
+   * Create new order from cart items
+   * @param {Object} orderData - Order information
+   * @returns {Promise<Object>} Newly created order
+   */
+  const createOrder = async (orderData) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const newOrder = {
+          ...orderData,
+          userId: user?.id,
+          id: orders.length > 0 ? Math.max(...orders.map(o => o.id)) + 1 : 1,
+          createdAt: new Date().toISOString(),
+          status: "confirmed",
+          orderNumber: `TH${Date.now()}`
+        };
+        
+        const updatedOrders = [newOrder, ...orders];
+        setOrders(updatedOrders);
+        resolve(newOrder);
+      }, 800);
+    });
+  };
 
-  // Récupérer une commande par ID
+  /**
+   * Get orders for specific user
+   * @param {string} userId - User ID
+   * @returns {Array} User's orders
+   */
+  const getUserOrders = (userId) => {
+    return orders.filter(order => order.userId === userId);
+  };
+
+  /**
+   * Get order by ID
+   * @param {number} id - Order ID
+   * @returns {Object|null} Order object or null if not found
+   */
   const getOrderById = (id) => {
     return orders.find(order => order.id === id);
   };
 
+  /**
+   * Calculate total cart value
+   * @returns {number} Total cart value
+   */
+  const getCartTotal = () => {
+    return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+  };
+
+  /**
+   * Calculate total number of items in cart
+   * @returns {number} Total items count
+   */
+  const getCartItemsCount = () => {
+    return cart.reduce((sum, item) => sum + item.quantity, 0);
+  };
+
+  // Context value containing all state and methods
   const value = {
     cart,
-    products,
+    products: eventsLoaded ? products : [],
     orders,
     addToCart,
     removeFromCart,
@@ -134,7 +178,8 @@ const getUserOrders = (userId) => {
     createOrder,
     getOrderById,
     getUserOrders,
-    
+    getCartTotal,
+    getCartItemsCount
   };
 
   return (
@@ -144,5 +189,4 @@ const getUserOrders = (userId) => {
   );
 };
 
-// Hook pour accéder au contexte
 export default ShopCartProvider;

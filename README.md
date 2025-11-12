@@ -1,12 +1,84 @@
-# React + Vite
+# Code Review Guide - Online Tickets Project
+![Ticket Preview](https://raw.githubusercontent.com/lamarana20/Billeterie_react/main/public/preview1.jpg)
+## Table of Contents
+![React](https://img.shields.io/badge/React-18-blue?logo=react)
+![Vite](https://img.shields.io/badge/Vite-Fast%20Builds-orange?logo=vite)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4.1-06B6D4?logo=tailwindcss)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## Quick Review Checklist
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Before Starting Review
+- [ ] Pull the latest code from repository
+- [ ] Run `npm install` to get dependencies
+- [ ] Run `npm start` to test locally
+- [ ] Check if build works: `npm run build`
 
-## Expanding the ESLint configuration
+### Functionality Check
+- [ ] All pages load without errors
+- [ ] Navigation works (all links functional)
+- [ ] Search functionality works
+- [ ] Filter by category works
+- [ ] Add to cart works
+- [ ] Cart updates correctly
+- [ ] Quantity selector works
+- [ ] Checkout process works
+- [ ] User login/logout works
+- [ ] Mobile menu works
+- [ ] Responsive on mobile/tablet/desktop
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Code Quality
+- [ ] No console errors in browser
+- [ ] No console.log statements left in code
+- [ ] Code is properly formatted
+- [ ] Components have clear names
+- [ ] Functions have descriptive names
+- [ ] Comments are clear and helpful
+
+### Performance
+- [ ] Page loads quickly
+- [ ] Images are optimized
+- [ ] No unnecessary re-renders
+- [ ] Smooth animations
+
+### Security
+- [ ] No sensitive data in code
+- [ ] No hardcoded passwords or API keys
+- [ ] User inputs are validated
+- [ ] Protected routes work correctly
+
+---
+
+## Detailed Review Process
+
+### Step 1: Clone and Setup (5 minutes)
+
+```bash
+git clone https://github.com/lamarana20/Billeterie_react.git
+
+npm install
+npm start
+```
+
+---
+
+
+
+```markdown
+
+
+
+
+### Functionality Testing
+- [ ] All features work as expected
+- [ ] No console errors
+- [ ] Mobile responsive
+- [ ] Performance is good
+
+
+```
+
+
+

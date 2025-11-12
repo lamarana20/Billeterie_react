@@ -1,105 +1,144 @@
-import { Spinner } from "@material-tailwind/react";
-import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import {
+  FaShieldAlt,
+  FaTicketAlt,
+  FaHeadset,
+  FaAward,
+  FaRocket,
+  FaUsers,
+} from 'react-icons/fa';
 
 const About = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 200);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <div className="max-w-3xl mx-auto p-6 min-h-[70vh]">
-      {loading ? (
-        <div className="flex flex-col items-center justify-center h-64">
-          <Spinner className="h-12 w-12 text-blue-500" />
-          <p className="mt-4 text-gray-600">Chargement de la billetterie...</p>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-100">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-blue-700 via-blue-700 to-blue-500 text-white">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f')] bg-cover bg-center opacity-20"></div>
+        <div className="relative max-w-7xl mx-auto px-4 py-24 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            About <span className="text-yellow-400">TicketEase</span>
+          </h1>
+          <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed text-blue-100">
+            We’re redefining how people discover and book tickets for unforgettable experiences.
+          </p>
         </div>
-      ) : (
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-          {/* En-tête avec effet dégradé */}
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white">
-            <h2 className="text-3xl font-bold">À propos de notre billetterie</h2>
-            <p className="mt-2 opacity-90">Votre porte d'entrée vers des expériences inoubliables</p>
+      </section>
+
+      {/* Mission Section */}
+      <section className="max-w-7xl mx-auto px-6 py-20">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
+            <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+              At TicketEase, we believe everyone deserves access to amazing experiences — from concerts that
+              move your soul to sports events that make your heart race. Our goal is to make it simple,
+              secure, and enjoyable for anyone to attend the events they love.
+            </p>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Founded in 2020, we’ve helped over 500,000 customers enjoy unforgettable moments.
+              Our platform connects you with the best local and international events with top-notch reliability.
+            </p>
           </div>
 
-          {/* Bulle d'information */}
-          <div className="relative p-6">
-            <div className="absolute -top-5 left-6 w-10 h-10 bg-blue-600 transform rotate-45"></div>
-            
-            <div className="bg-blue-50 rounded-lg p-6 shadow-inner border border-blue-100 relative z-10">
-              <h3 className="text-xl font-semibold text-blue-800 mb-3">MaBilletterie Pro</h3>
-              <p className="text-gray-700 mb-4">
-                Notre plateforme de billetterie en ligne vous offre une expérience d'achat sécurisée et intuitive 
-                pour tous vos événements préférés. Conçue pour simplifier votre accès à la culture et aux loisirs.
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
-                <div className="flex items-start">
-                  <div className="bg-blue-100 p-2 rounded-full mr-3">
-                    <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                  </div>
-                  <span className="text-gray-700">Paiement 100% sécurisé</span>
-                </div>
-                <div className="flex items-start">
-                  <div className="bg-blue-100 p-2 rounded-full mr-3">
-                    <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                  </div>
-                  <span className="text-gray-700">Billets mobiles instantanés</span>
-                </div>
-                <div className="flex items-start">
-                  <div className="bg-blue-100 p-2 rounded-full mr-3">
-                    <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                  </div>
-                  <span className="text-gray-700">Réservation en quelques clics</span>
-                </div>
-                <div className="flex items-start">
-                  <div className="bg-blue-100 p-2 rounded-full mr-3">
-                    <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                  </div>
-                  <span className="text-gray-700">Support client 24/7</span>
-                </div>
+          {/* Stats Card */}
+          <div className="bg-white rounded-2xl shadow-2xl p-8 border border-gray-100">
+            <div className="grid grid-cols-2 gap-6">
+              <div className="text-center">
+                <FaUsers className="text-blue-600 text-4xl mx-auto mb-3" />
+                <div className="text-2xl font-bold text-gray-900">500K+</div>
+                <p className="text-gray-600">Happy Customers</p>
+              </div>
+              <div className="text-center">
+                <FaTicketAlt className="text-green-600 text-4xl mx-auto mb-3" />
+                <div className="text-2xl font-bold text-gray-900">10K+</div>
+                <p className="text-gray-600">Events Listed</p>
+              </div>
+              <div className="text-center">
+                <FaAward className="text-purple-600 text-4xl mx-auto mb-3" />
+                <div className="text-2xl font-bold text-gray-900">50+</div>
+                <p className="text-gray-600">Cities Covered</p>
+              </div>
+              <div className="text-center">
+                <FaRocket className="text-orange-600 text-4xl mx-auto mb-3" />
+                <div className="text-2xl font-bold text-gray-900">99.9%</div>
+                <p className="text-gray-600">Uptime</p>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Section supplémentaire */}
-          <div className="p-6">
-            <h3 className="text-xl font-semibold text-gray-800 mb-3">Notre engagement</h3>
-            <p className="text-gray-600">
-              Fondée en {new Date().getFullYear()}, notre billetterie s'engage à fournir un service de qualité 
-              avec une transparence totale sur les prix. Nous travaillons en direct avec les organisateurs 
-              d'événements pour vous offrir les meilleures places au meilleur prix.
-              (Fictif)
+      {/* Values Section */}
+      <section className="bg-gradient-to-br from-white to-blue-50 py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Values</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              These principles guide everything we do at TicketEase
             </p>
-            
-            <div className="mt-6 flex flex-wrap gap-4">
-              <button className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-              <NavLink to="/events" className="text-white">
-                Explorer les événements
-              </NavLink>
-              </button>
-              <button className="px-5 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition">
-                <a href="tel:+33123456789" className="text-blue-600">
-                  Appelez-nous
-                </a>
-              </button>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Value 1 */}
+            <div className="bg-white shadow-md hover:shadow-xl rounded-2xl p-8 text-center transition-all duration-300 border border-gray-100">
+              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <FaShieldAlt className="text-blue-600 text-2xl" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Trust & Security</h3>
+              <p className="text-gray-600">
+                Your security is our top priority. We use industry-leading encryption to ensure every transaction is safe.
+              </p>
+            </div>
+
+            {/* Value 2 */}
+            <div className="bg-white shadow-md hover:shadow-xl rounded-2xl p-8 text-center transition-all duration-300 border border-gray-100">
+              <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <FaTicketAlt className="text-green-600 text-2xl" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Best Selection</h3>
+              <p className="text-gray-600">
+                From local shows to international tours, we offer a wide selection of events for every taste and budget.
+              </p>
+            </div>
+
+            {/* Value 3 */}
+            <div className="bg-white shadow-md hover:shadow-xl rounded-2xl p-8 text-center transition-all duration-300 border border-gray-100">
+              <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <FaHeadset className="text-purple-600 text-2xl" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">24/7 Support</h3>
+              <p className="text-gray-600">
+                Our dedicated team is available around the clock to assist you with any questions or issues.
+              </p>
             </div>
           </div>
         </div>
-      )}
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative bg-gradient-to-r from-blue-700 via-blue-700 to-blue-700 text-white py-20">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1563298723-dcfebaa392e3')] bg-cover bg-center opacity-20"></div>
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold mb-4">Ready to Find Your Next Experience?</h2>
+          <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
+            Join thousands of satisfied customers and discover events that create lasting memories.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/events"
+              className="bg-yellow-400 text-gray-900 font-semibold py-3 px-8 rounded-lg hover:bg-yellow-300 transition-colors"
+            >
+              Browse Events
+            </a>
+            <a
+              href="/contact"
+              className="border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-gray-900 transition-colors"
+            >
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

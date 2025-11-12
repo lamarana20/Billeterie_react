@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./Components/AuthContext";
 import ShopCartContext from "./Context/Shop-card-context";
+import { SearchProvider } from "./Context/SearchContext";
 import ProtectedRoute from "./Components/auth/ProtectedRoute";
 
 import Navbar from "./Components/Navbar";
@@ -15,7 +16,6 @@ import Checkout from "./Components/Checkout";
 import OrderConfirmation from "./Components/OrderConfirmation";
 import OrderHistory from "./Components/OrderHistory";
 import Login from "./Components/auth/Login";
-//import Register from "./Components/auth/Register";
 import Profile from "./Components/auth/Profile";
 import AdminLayout from "./Components/admin/AdminLayout";
 import AdminDashboard from "./Components/admin/AdminDashboard";
@@ -23,79 +23,86 @@ import AdminOrders from "./Components/admin/AdminOrders";
 import NotFound from "./Components/NotFound";
 import MyOrders from "./Components/MyOrders";
 import BilletDetail from "./Components/BilletDetail";
-//import UsersList from "./Components/UsersList";
+import SearchResults from "./Components/SearchResults";
 
+/**
+ * Main App Component
+ * Sets up routing and global providers for the entire application
+ */
 const App = () => {
   return (
     <AuthProvider>
-      <ShopCartContext>
-        <div className="min-h-screen flex flex-col my-0 mx-auto">
-          <Navbar />
+      <SearchProvider>
+        <ShopCartContext>
+          <div className="min-h-screen flex flex-col">
+            {/* Global Navigation Bar */}
+            <Navbar />
 
-          <main className="flex-1 ml-2 mr-2">
-            <Routes>
-              {/* Routes publiques */}
-              <Route path="/" element={<Home />} />
-              <Route path="/events" element={<Events />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/login" element={<Login />} />
+            {/* Main Content Area */}
+            <main className="flex-1">
+              <Routes>
+                {/* Public Routes */}
+                <Route path="/" element={<Home />} />
+                <Route path="/events" element={<Events />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/search" element={<SearchResults />} />
+
+                {/* Event Routes */}
+                <Route path="/billets" element={<BilletLists />} />
+                <Route path="/billet/:id" element={<BilletDetail />} />
+
+                {/* Protected Routes - Require Authentication */}
+                <Route path="/checkout" element={
+                  <ProtectedRoute>
+                    <Checkout />
+                  </ProtectedRoute>
+                } />
+
+                <Route path="/order-confirmation/:id" element={
+                  <ProtectedRoute>
+                    <OrderConfirmation />
+                  </ProtectedRoute>
+                } />
+                <Route path="/my-orders" element={
+                  <ProtectedRoute>
+                    <MyOrders />
+                  </ProtectedRoute>
+                } />
+                
+                <Route path="/orders" element={
+                  <ProtectedRoute>
+                    <OrderHistory />
+                  </ProtectedRoute>
+                } />
+                
+                <Route path="/profile" element={
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                } />
+
+                {/* Admin Routes - Require Admin Privileges */}
+                <Route path="/admin" element={
+                  <ProtectedRoute adminOnly>
+                    <AdminLayout />
+                  </ProtectedRoute>
+                }>
+                  <Route index element={<AdminDashboard />} />
+                  <Route path="orders" element={<AdminOrders />} />
+                </Route>
+
+                {/* 404 Not Found Route */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </main>
             
-
-              <Route path="/billets" element={<BilletLists />} />
-              <Route path="/billet/:id" element={<BilletDetail />} />
-
-              {/* Routes protégées */}
-              <Route path="/checkout" element={
-                <ProtectedRoute>
-                  <Checkout />
-                </ProtectedRoute>
-              } />
-
-              
-              <Route path="/order-confirmation/:id" element={
-                <ProtectedRoute>
-                  <OrderConfirmation />
-                </ProtectedRoute>
-              } />
-              <Route path="/my-orders" element={
-                <ProtectedRoute>
-                  <MyOrders />
-                </ProtectedRoute>
-              } />
-              
-              <Route path="/orders" element={
-                <ProtectedRoute>
-                  <OrderHistory />
-                </ProtectedRoute>
-              } />
-              
-              <Route path="/profile" element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              } />
-
-              {/* Routes admin */}
-              <Route path="/admin" element={
-                <ProtectedRoute adminOnly>
-                  <AdminLayout />
-                </ProtectedRoute>
-              }>
-               
-                <Route index element={<AdminDashboard />} />
-                <Route path="orders" element={<AdminOrders />} />
-             
-              </Route>
-
-              {/* Route 404 */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          
-          <Footer />
-        </div>
-      </ShopCartContext>
+            {/* Global Footer */}
+            <Footer />
+          </div>
+        </ShopCartContext>
+      </SearchProvider>
     </AuthProvider>
   );
 };
